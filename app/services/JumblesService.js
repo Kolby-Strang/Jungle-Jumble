@@ -28,9 +28,11 @@ function _trackCurrentIndex(key) {
     if (key == 'Shift') return
     if (key == 'Backspace' && AppState.currentIndex == 0) return
 
-    console.log(AppState.currentIndex);
     let contentArray = AppState.activeJumble.content.split('')
-    if (contentArray[AppState.currentIndex] != key && key != 'Backspace') Pop.error('WRONG KEY')
+    if (contentArray[AppState.currentIndex] != key && key != 'Backspace') {
+        Pop.error('WRONG KEY')
+        AppState.incorrectIndexes.push(AppState.currentIndex)
+    }
 
     if (key == 'Backspace' && AppState.currentIndex > 0) {
         AppState.currentIndex--
@@ -46,9 +48,17 @@ function _highlightIndexes() {
     let appContent = AppState.activeJumble.content
     let index = AppState.currentIndex
     let content = '<span class="bg-highlight">'
-    content += appContent.substring(0, index)
+
+    for (let i = 0; i < index; i++) {
+        if (AppState.incorrectIndexes.find(ind => ind == i)) {
+            content += `</span><span class="bg-danger">${appContent[i]}</span><span class="bg-highlight">`
+        } else {
+            content += appContent[i]
+        }
+    }
     content += '</span>'
     content += appContent.substring(index)
+
     setHTML('jumble-content', content)
 }
 

@@ -20,6 +20,8 @@ class ObservableAppState extends EventEmitter {
 
   currentIndex = 0
 
+  incorrectIndexes = []
+
   // NOTE Used to load initial data
   init() {
     this.jumbles = loadState('jumbles', [Jumble])
