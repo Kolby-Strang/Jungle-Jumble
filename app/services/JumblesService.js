@@ -8,7 +8,7 @@ function _calculateTimeSpent() {
     let start = AppState.jumbleStartTime
     let end = AppState.jumbleEndTime
     const timeInSeconds = ((end.getTime() - start.getTime()) / 1000).toFixed(2)
-    if (timeInSeconds > AppState.activeJumble.timeHighScore) {
+    if (timeInSeconds > AppState.activeJumble.timeHighScore && AppState.activeJumble.timeHighScore) {
         Pop.toast(`You took ${timeInSeconds} seconds`)
         return
     }
@@ -39,6 +39,7 @@ class JumblesService {
     endJumble() {
         AppState.jumbleEndTime = new Date()
         _calculateTimeSpent()
+        AppState.jumbles.sort((jumble1, jumble2) => jumble2.timeHighScore - jumble1.timeHighScore)
         AppState.activeJumble = null
     }
 

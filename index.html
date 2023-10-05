@@ -29,7 +29,7 @@
 
       <div class="container-fluid">
         <section class="row">
-          <div class="col-4 card text-center p-2">
+          <div class="col-4 card title text-center p-2">
             <p class="fs-2">Jungle Jumble</p>
           </div>
         </section>
@@ -60,7 +60,7 @@
 
           <div class="col-5 p-3">
 
-            <div class="card text-center p-3">
+            <div class="card menu-box text-center p-3">
 
               <p class="fw-bold py-3">Jumbles</p>
               <div id="jumble-dump" class="py-3">
@@ -76,8 +76,8 @@
               </div>
               <p>Create Jumble</p>
               <form class="d-flex flex-column align-items-center" onsubmit="app.JumblesController.createJumble(event)">
-                <input name="title" type="text" placeholder="Title">
-                <input name="content" type="text" placeholder="Jumble">
+                <input name="title" type="text" placeholder="Title" minlength="3" maxlength="15">
+                <input name="content" type="text" placeholder="Jumble" minlength="10" maxlength="200">
                 <button class="d-block mt-1 btn btn-primary" type="submit">Submit</button>
               </form>
             </div>

@@ -13,7 +13,7 @@ export class Jumble {
         return /*html */`
         <div id="active-jumble" class="row p-3">
             <!-- Jumble template -->
-            <div class="card text-center p-3 mb-3">
+            <div class="card jumble-example text-center p-3 mb-3">
 
                 <div class="d-flex justify-content-between fw-bold">
                     <p>${this.title}</p>
@@ -26,9 +26,9 @@ export class Jumble {
 
             <div class="col-12 p-0">
                 <!-- type area -->
-                <div class="card text-center p-2">
+                <div class="card jumble-content-form text-center p-2">
                     <form onsubmit="app.JumblesController.submitJumbleResult(event)">
-                        <input name="activeJumbleContent" id="activeJumbleContent" class="w-100">
+                        <input name="activeJumbleContent" id="activeJumbleContent" class="tall-input mb-3 w-100">
                         <button class="btn btn-primary w-100">Submit</button>
                     </form>
                 </div>

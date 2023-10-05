@@ -9,7 +9,7 @@ function _drawActiveJumble() {
         setHTML('jumble-container', AppState.activeJumble.activeJumbleCard)
     } else {
         setHTML('jumble-container', `
-        <div class="card my-2 text-center">
+        <div class="card no-jumble my-2 text-center">
             <p class="p-3 fs-3">No Active Jumble</p>
         </div>
         `)

@@ -11,3 +11,31 @@ body {
 .menu-text {
     font-size: 10pt;
 }
+
+.tall-input {
+    height: 15em;
+}
+
+.card {
+    border: solid 4px black;
+}
+
+.title {
+    box-shadow: -8px -8px 0 rgb(229, 98, 98);
+}
+
+.jumble-example {
+    box-shadow: -8px 8px 0 rgb(0, 255, 21);
+}
+
+.no-jumble {
+    box-shadow: -8px 8px 0 rgb(125, 50, 121);
+}
+
+.jumble-content-form {
+    box-shadow: 8px 8px 0 rgb(84, 102, 235);
+}
+
+.menu-box {
+    box-shadow: 8px -8px 0 rgb(242, 255, 0);
+}
