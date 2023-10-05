@@ -18,7 +18,7 @@ class ObservableAppState extends EventEmitter {
 
   jumbleEndTime = null
 
-
+  currentIndex = 0
 
   // NOTE Used to load initial data
   init() {

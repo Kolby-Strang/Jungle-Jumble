@@ -24,6 +24,8 @@ function _drawJumbleList() {
     setHTML('jumble-dump', content)
 }
 
+
+
 export class JumblesController {
     constructor() {
         _drawActiveJumble()
@@ -61,4 +63,5 @@ export class JumblesController {
         jumblesService.makeNewJumble(newForm)
         form.reset()
     }
+
 }

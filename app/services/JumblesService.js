@@ -1,7 +1,9 @@
 import { AppState } from "../AppState.js"
+import { JumblesController } from "../controllers/JumblesController.js"
 import { Jumble } from "../models/Jumble.js"
 import { Pop } from "../utils/Pop.js"
 import { saveState } from "../utils/Store.js"
+import { setHTML } from "../utils/Writer.js"
 
 
 function _calculateTimeSpent() {
@@ -21,6 +23,35 @@ function _saveJumbles() {
     saveState('jumbles', AppState.jumbles)
 }
 
+function _trackCurrentIndex(key) {
+    if (document.getElementById('activeJumbleContent') !== document.activeElement) return
+    if (key == 'Shift') return
+    if (key == 'Backspace' && AppState.currentIndex == 0) return
+
+    console.log(AppState.currentIndex);
+    let contentArray = AppState.activeJumble.content.split('')
+    if (contentArray[AppState.currentIndex] != key && key != 'Backspace') Pop.error('WRONG KEY')
+
+    if (key == 'Backspace' && AppState.currentIndex > 0) {
+        AppState.currentIndex--
+    } else {
+        AppState.currentIndex++
+    }
+
+    _highlightIndexes()
+
+}
+
+function _highlightIndexes() {
+    let appContent = AppState.activeJumble.content
+    let index = AppState.currentIndex
+    let content = '<span class="bg-highlight">'
+    content += appContent.substring(0, index)
+    content += '</span>'
+    content += appContent.substring(index)
+    setHTML('jumble-content', content)
+}
+
 
 class JumblesService {
 
@@ -34,6 +65,9 @@ class JumblesService {
         let targetJumble = jumbles.find(jumble => jumble.id == jumbleId)
         AppState.activeJumble = targetJumble
         document.getElementById('activeJumbleContent').focus()
+        onkeydown = (event) => {
+            _trackCurrentIndex(event.key)
+        }
     }
 
     endJumble() {
@@ -41,6 +75,7 @@ class JumblesService {
         _calculateTimeSpent()
         AppState.jumbles.sort((jumble1, jumble2) => jumble2.timeHighScore - jumble1.timeHighScore)
         AppState.activeJumble = null
+        AppState.currentIndex = 0
     }
 
     makeNewJumble(newJumble) {

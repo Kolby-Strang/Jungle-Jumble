@@ -20,7 +20,7 @@ export class Jumble {
                     <p>Fastest Time: ${this.timeHighScore}</p>
                  </div>
                 <div class="text-start">
-                    <p>${this.content}</p>
+                    <p id="jumble-content">${this.content}</p>
                 </div>
             </div>
 
