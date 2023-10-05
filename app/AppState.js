@@ -1,3 +1,4 @@
+import { Jumble } from "./models/Jumble.js"
 import { Value } from "./models/Value.js"
 import { EventEmitter } from "./utils/EventEmitter.js"
 import { isValidProp } from "./utils/IsValidProp.js"
@@ -9,9 +10,19 @@ class ObservableAppState extends EventEmitter {
   /** @type {import('./models/Value.js').Value[]} */
   values = loadState('values', [Value])
 
+  jumbles = []
+
+  activeJumble = null
+
+  jumbleStartTime = null
+
+  jumbleEndTime = null
+
+
+
   // NOTE Used to load initial data
   init() {
-
+    this.jumbles = loadState('jumbles', [Jumble])
   }
 
 }
