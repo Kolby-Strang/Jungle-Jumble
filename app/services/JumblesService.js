@@ -36,6 +36,7 @@ function _trackCurrentIndex(key) {
 
     if (key == 'Backspace' && AppState.currentIndex > 0) {
         AppState.currentIndex--
+        if (AppState.currentIndex <= AppState.incorrectIndexes[AppState.incorrectIndexes.length - 1]) AppState.incorrectIndexes.splice(AppState.incorrectIndexes.length - 1, 1)
     } else {
         AppState.currentIndex++
     }
@@ -48,6 +49,8 @@ function _highlightIndexes() {
     let appContent = AppState.activeJumble.content
     let index = AppState.currentIndex
     let content = '<span class="bg-highlight">'
+
+    console.log(AppState.incorrectIndexes);
 
     for (let i = 0; i < index; i++) {
         if (AppState.incorrectIndexes.find(ind => ind == i)) {
