@@ -50,7 +50,6 @@ function _highlightIndexes() {
     let index = AppState.currentIndex
     let content = '<span class="bg-highlight">'
 
-    console.log(AppState.incorrectIndexes);
 
     for (let i = 0; i < index; i++) {
         if (AppState.incorrectIndexes.find(ind => ind == i)) {
@@ -89,6 +88,7 @@ class JumblesService {
         AppState.jumbles.sort((jumble1, jumble2) => jumble2.timeHighScore - jumble1.timeHighScore)
         AppState.activeJumble = null
         AppState.currentIndex = 0
+        AppState.incorrectIndexes = []
     }
 
     makeNewJumble(newJumble) {
